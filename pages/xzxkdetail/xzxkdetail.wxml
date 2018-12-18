@@ -1,0 +1,5 @@
+<toastedit id="toastedit"></toastedit>
+<import src="../../template/xzxk.wxml"/>
+
+
+<template is="oldXzxk" data="{{errMsg:errMsg,detail:detail,top:top,left:left,showmenus:showmenus,isCollected:isCollected}}"></template>

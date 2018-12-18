@@ -1,0 +1,76 @@
+.ztmcTitle{
+  display: flex;
+  width: 100%;
+  padding:10px 0;
+  font-size: 20px;
+  border-bottom: 1px solid #FAF1F1;
+  justify-content: center;
+}
+
+.ztmcText{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content{
+  width: 96%;
+  margin: 0rpx auto;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius:10rpx;
+  box-shadow:0px 0px 10px 2px #ccc;
+  font-size: 30rpx;
+}
+
+.table{
+  border-right:0;
+  border-bottom: 0;
+  width: 100%;
+}
+.tr:nth-child(even){
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F6F6F6;
+}
+.tr:nth-child(odd){
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.td{
+  padding: 20rpx 10rpx;
+  width: 100%;
+  color: black;
+}
+.td1{
+  display: flex;
+  align-items: center;
+  width: 400rpx;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.td2{
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.errArea{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:500px;
+  font-size: 20px;
+}
+
+.icon{
+  width:18px;
+  height:18px;
+  vertical-align:-7%;
+  margin-left:2px
+}

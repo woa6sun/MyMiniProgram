@@ -1,0 +1,9 @@
+<view class="content">
+  查询没有结果
+</view>
+<view class="back" catchtap='returnwelcome'>
+  <text style='color:#FF6A6A'>返 回 首 页</text>
+</view>
+<view class="showResultCount">
+  共匹配到0条信息
+</view>

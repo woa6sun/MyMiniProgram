@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "行政处罚信息公示",
+  "usingComponents": {
+    "toastedit": "../../toast/toast"
+  }
+}

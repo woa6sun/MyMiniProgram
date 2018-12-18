@@ -1,0 +1,37 @@
+<wxs module="filter" src="../../filter/filter.wxs"></wxs>
+
+<scroll-view class="infolist" scroll-y="true" lower-threshold>
+<block wx:for="{{collectionList}}" wx:for-item="col" wx:key="collectionList">
+  
+    <view class="listContent" catchtap='toDetail' data-type="{{col.type}}"  data-tydm="{{col.tyshxydm}}" data-fid="{{col.fid}}">
+  <view style='display: flex;flex-direction: row;width:96%'>
+     <view>
+      <image wx:if="{{col.type==1}}" src="../../images/xzxk.png" class="icon"/>
+      <image wx:if="{{col.type==2}}" src="../../images/xzcf.png" class="icon"/>
+      <image wx:if="{{col.type==3}}" src="../../images/sxbzxr.png" class="icon"/>
+      <image wx:if="{{col.type==4}}" src="../../images/detail.png" class="icon"/>
+    </view>
+
+    <view>
+      <text selectable='true' class="ztmc">{{col.name}}</text>
+      <view class="time">收藏时间：{{col.time}}</view>
+    </view>
+  </view>
+   
+  <view catchtap='deleteCollection' data-type="{{col.type}}"  data-tydm="{{col.tyshxydm}}" data-fid="{{col.fid}}">
+    <image src='../../images/delete.png' class="icon"></image>
+  </view>
+
+  </view>
+</block>
+ 
+
+ 
+  
+  <view style="height:50px;width:100%"></view>  
+</scroll-view>
+<view class="download" >
+  <view class='downloadcontent'>
+    <text>共收藏{{count}}条记录</text>
+  </view>
+</view>

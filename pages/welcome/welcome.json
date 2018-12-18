@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "toastedit": "../../toast/toast"
+  }
+  
+}

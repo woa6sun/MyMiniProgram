@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/searchresult/searchresult",
+    "pages/noresulttip/noresulttip",
+    "pages/querylist/querylist",
+    "pages/xzxkdetail/xzxkdetail",
+    "pages/xzcfdetail/xzcfdetail",
+    "pages/sxbzxrdetail/sxbzxrdetail",
+    "pages/mystorage/mystorage",
+    "pages/test/test"
+    
+    
+  ],
+  "window": {
+    "backgroundColor": "#FF6A6A",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF6A6A",
+    "navigationBarTitleText": "信用广东",
+    "navigationBarTextStyle": "#FFFFFF"   
+  }
+  
+}

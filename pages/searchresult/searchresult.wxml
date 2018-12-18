@@ -1,0 +1,550 @@
+<wxs module="filter" src="../../filter/filter.wxs"></wxs>
+<toastedit id="toastedit"></toastedit>
+
+<view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+    <view hidden='{{showmenus}}' class="sub_menu">
+      <view class='menu_main' catchtap='collection'>
+        <image wx:if="{{!isCollected}}" src='../../images/notcollected.png' class="menu_img"></image>
+        <image wx:if="{{isCollected}}" src='../../images/collected.png' class="menu_img"></image>
+      </view>
+      <view class='menu_main' catchtap='download' data-id='{{model.fid}}'>
+        <image src='../../images/download.png' class="menu_img"></image>
+      </view>
+    </view>
+
+    <view catchtap='showMenu' class='menu_main1'>
+       <image src="../../images/menu.png"  class='menu_img1' style="margin-top:15px"></image>
+    </view>
+</view>
+
+<scroll-view scroll-y="true" class='container'>
+  <view class='mainobject'>
+    <text selectable='true' style='text-align:center'>{{model.name}}</text>
+  </view>
+  <view id="identityInfo" catchtap='hideOrShow' class="info_item">
+    <view style="width:90%;" class="info_item_content">
+      <image style="width:60rpx;height:60rpx;margin-left:20rpx" src="../../images/identityInfo.png"></image>
+      <text>主体身份信息</text>
+    </view>
+    <view  class="toggleicon" >
+      <image style='width:60rpx;height:60rpx' src="{{isIdentityInfo?'../../images/big_arrow.png':'../../images/big_arrow_right.png'}}"></image>
+    </view>
+  </view>
+  <view class="test" wx:if="{{isIdentityInfo}}">
+    <view id="identityInfo" class="panel flex-column">
+
+    <block wx:if="{{ObjectInfo.qybaseinfo != undefined}}">
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">统一社会信用代码：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.tyshxydm}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">法定代表人：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0030}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">组织机构代码：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0150}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">注册日期：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{filter.subStr(baseInfo.f0040,0,10)}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">工商注册号：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0020}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">注册资金(万元)：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0050}}（{{baseInfo.f0060}}）</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">登记机关：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0100}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">营业期限：</text>
+        <text selectable='true' class="table-text  flex-row right">{{filter.subStr(baseInfo.f0120,0,10)}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">注册地址：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0070}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">经营范围：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f0130}}
+        </text>
+      </view>   
+    </block>
+
+    <block wx:if="{{ObjectInfo.sydwbaseinfo != undefined}}">
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">统一社会信用代码：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.tyshxydm}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">法定代表人：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000050}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">法人证书号：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000010}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">举办单位：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000040}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">单位状态：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000090}}</text>
+      </view>
+
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">证书识别码：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000110}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">证书更新时间：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.topicUpdateTime}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">住所：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000060}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">设立登记时间：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{filter.dateToStr(baseInfo.f4400000200610000070)}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">开办资金(万元)：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000030}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">经费来源：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000080}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">单位职能：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f4400000200610000020}}</text>
+      </view>
+    </block>
+
+    <block wx:if="{{ObjectInfo.shzzbaseinfo != undefined}}">
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">统一社会信用代码：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f101}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">法定代表人：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f020}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">单位类别：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f010}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">组织机构代码：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f090}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">登记证号：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f110}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">登记日期：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f030}}</text>
+      </view>
+
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">注册资金(万元)：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f040}}（{{obj.f050}}）</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">登记机关：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f140}}</text>
+      </view>
+       <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">单位地址：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f080}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">主管单位：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f130}}</text>
+      </view>
+      <view class="flex-row bottom">
+        <text style="width:40%" class="table-text  flex-row left">业务范围：</text>
+        <text selectable='true' style="width:60%" class="table-text  flex-row right">{{baseInfo.f070}}</text>
+      </view>
+    
+    </block>
+
+
+    </view>
+  </view>
+  <view id="regChange" catchtap='hideOrShow' class="info_item">
+    <view style="width:90%;" class="info_item_content">
+      <image style="width:60rpx;height:60rpx;margin-left:20rpx" src="../../images/reg_change.png"></image>
+      <text>注册变更信息</text>
+    </view>
+    <view  class="toggleicon" >
+      <image style='width:60rpx;height:60rpx' src="{{isRegChange?'../../images/big_arrow.png':'../../images/big_arrow_right.png'}}"></image>
+    </view>
+  </view>
+  <view  class="test" wx:if="{{isRegChange}}">
+    <view style="border: 1px solid #B2B2B2;" class="panel flex-column">
+
+        <block wx:for="{{regInfo}}" wx:for-item="info">
+          <view class="detailInfo-item">
+            <text>{{info.type}}</text>
+            <view class="detailnumber">{{info.content.length}}</view>
+          </view>
+          <view class="td1">
+              <view class="td11">
+                <view class="td1a">
+                  <span>{{info.type}}</span>
+                  <span style="color:red">（{{info.content.length}}）</span>
+                </view>
+                <text>更新时间：{{info.date}}</text>
+              </view>
+            </view>
+          <block wx:if="{{info.content.length==1}}" >
+            <view class="td2">
+              <text selectable='true' style="margin-left:20px">{{info.date}},在[{{info.content[0].departName}}]登记</text>
+            </view>
+          </block>
+          <block wx:else>
+            <block wx:for="{{info.content}}" wx:for-item="tab" wx:for-index="index">
+              <view class="tabColumn">
+                <view class="tabIndex flex-row">
+                  <text>{{index+1}}</text>
+                </view>
+                <view style="width:95%;margin-right:1px;" class="flex-column">
+                  <view class="flex-row bottom">
+                    <text style="width:28.5%" class="table-text flex-row left">变更事项：</text>
+                    <text selectable='true' style="width:71.5%" class="table-text flex-row right">{{tab.fieldName}}</text>
+                  </view>
+                  <view class="flex-row bottom">
+                    <text style="width:28.5%" class="table-text flex-row left">变更前内容：</text>
+                    <text selectable='true' style="width:71.5%" class="table-text flex-row right">{{tab.oldValue}}</text>
+                  </view>
+                  <view class="flex-row bottom">
+                    <text style="width:28.5%" class="table-text flex-row left">变更后内容：</text>
+                    <text selectable='true' style="width:71.5%" class="table-text flex-row right">{{tab.newValue}}</text>
+                  </view>
+                  <view class="flex-row bottom">
+                    <text style="width:28.5%" class="table-text flex-row left">变更时间：</text>
+                    <text selectable='true' style="width:71.5%" class="table-text flex-row right">{{tab.approveDate}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </view>
+  </view>
+
+
+  <view id="shareholder" wx:if="{{isEnterprise}}" catchtap='hideOrShow' class="info_item">
+    <view style="width:90%;" class="info_item_content">
+      <image style="width:60rpx;height:60rpx;margin-left:20rpx" src="../../images/shareholder.png"></image>
+      <text>股东高管信息</text>
+    </view>
+    <view  class="toggleicon">
+      <image style='width:60rpx;height:60rpx' src="{{isShareHolder?'../../images/big_arrow.png':'../../images/big_arrow_right.png'}}"></image>
+    </view>
+  </view>
+
+
+  <view  class="test" wx:if="{{isShareHolder}}">
+    <view wx:if="{{ObjectInfo.QYGQXX_TABLE!=undefined && ObjectInfo.QYZWXX_TABLE!=undefined}}" class="panel" style='justify-content: space-around'>
+
+      <block wx:if="{{ObjectInfo.QYGQXX_TABLE!=undefined && ObjectInfo.QYGQXX_TABLE.length>0}}">
+        <view class='box-container'>
+          <view class="info-box head">股东信息</view>
+          <block wx:for="{{ObjectInfo.QYGQXX_TABLE}}" wx:for-item="data">
+            <text selectable='true' class="info-box">{{data.NAME}}</text>
+          </block>
+        </view>
+      </block>
+
+      <block wx:if="{{ObjectInfo.QYZWXX_TABLE!=undefined && ObjectInfo.QYZWXX_TABLE.length>0}}">
+        <view class='box-container'>
+          <view class="info-box head">高管信息</view>
+          <block wx:for="{{ObjectInfo.QYZWXX_TABLE}}" wx:for-item="data">
+            <text selectable='true' class="info-box">{{data.NAME}}</text>
+          </block>
+        </view>
+      </block>
+        
+    </view>
+
+  </view>
+  <view id="otherInfo" catchtap='hideOrShow' class="info_item">
+    <view style="width:90%;" class="info_item_content">
+      <image style="width:60rpx;height:60rpx;margin-left:20rpx" src="../../images/otherInfo.png"></image>
+      <text>其他信息类</text>
+    </view>
+    <view  class="toggleicon" >
+      <image style='width:60rpx;height:60rpx' src="{{isOtherInfo?'../../images/big_arrow.png':'../../images/big_arrow_right.png'}}"></image>
+    </view>
+  </view>
+
+
+  <view  class="test" wx:if="{{isOtherInfo}}">
+    <view style="border: 1px solid #B2B2B2;" class="panel flex-column">
+
+      <view id="isXzxk" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>行政许可信息类</text>
+        <view class="detailnumber">{{ObjectInfo.xzxkcount}}</view>
+      </view>
+      <view wx:if="{{isXzxk}}" class='test1'>
+
+        <block wx:for="{{xzxk}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+
+      </view>
+
+     
+      <view id="isXzcf" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>行政处罚信息类</text>
+        <view class="detailnumber">{{ObjectInfo.xzcfcount}}</view>
+      </view>
+      <view wx:if="{{isXzcf}}" class="test1">
+        
+         <block wx:for="{{xzcf}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+
+
+      </view>
+
+      <view id="isGrade" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>等级评价类</text>
+        <view class="detailnumber">{{ObjectInfo.djpdcount}}</view>
+      </view>
+      <view wx:if="{{isGrade}}" class="test1">
+         <block wx:for="{{djpd}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+
+
+      </view>
+
+
+
+
+      
+
+      <view id="isHonor" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>荣誉类</text>
+        <view  class="detailnumber">{{ObjectInfo.rycount}}</view>
+      </view>
+      <view wx:if="{{isHonor}}" class="test1">
+        <block wx:for="{{ryxx}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+
+
+      </view>
+
+      <view id="isJudgement" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>司法裁定类</text>
+        <view class="detailnumber">{{ObjectInfo.sfcdcount}}</view>
+      </view>
+      <view wx:if="{{isJudgement}}" class="test1">
+         <block wx:for="{{sfcd}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+      </view>
+
+      <view id="isOweTax" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>欠税欠费类</text>
+        <view class="detailnumber">{{ObjectInfo.qsqfcount}}</view>
+      </view>
+       <view wx:if="{{isJudgement}}" class="test1">
+        <block wx:for="{{qsqf}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+       </view>
+
+      <view id="isOther" catchtap='classHideOrShow' class="detailInfo-item">
+        <text>其他</text>
+        <view class="detailnumber">{{ObjectInfo.qtcount}}</view>
+      </view>
+       <view wx:if="{{isOther}}" class="test1">
+           <block wx:for="{{qtxx}}" wx:for-item="data">
+          <view class="td1">
+            <view class="td11">
+              <view class="td1a">
+                <span>{{data.infoTypeName}}</span>
+                <span style="color:red">（{{data.objList.length}}）</span>
+              </view>
+              <text>更新时间：{{data.updateTime}}</text>
+            </view>
+          </view>
+          <block wx:for="{{data.objList}}" wx:for-index="index" wx:for-item="tab">
+            <view class="tabColumn">
+              <view style="width:99.5%;margin-left:1px;" class="flex-column">
+                <view class="tabIndexRow flex-row">
+                  <text>记录{{index+1}}</text>
+                </view>
+                <block wx:for="{{tab}}" wx:for-item="column">
+                  <view class="flex-row bottom">
+                    <text selectable='true' style="width:35%" class="table-text flex-row left">{{column.name}}：</text>
+                    <text selectable='true' style="width:65%;" class="table-text flex-row right">{{column.value}}</text>
+                  </view>
+                </block>
+             </view>
+          </view> 
+          </block>
+        </block>
+       </view>
+
+    </view>
+  </view>
+  <view style="width: 100%;height: 29px;"></view>
+</scroll-view>
+<!-- <view class="download" catchtap='download' data-id='{{model.fid}}'>
+  <view class='downloadcontent'>
+    <text>下载信用记录报告</text>
+  </view>
+</view> -->

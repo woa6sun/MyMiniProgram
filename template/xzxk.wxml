@@ -1,0 +1,250 @@
+<wxs module="filter" src="../filter/filter.wxs"></wxs>
+<!-- 新版行政许可 -->
+<template name="newXzxk">
+  <block wx:if="{{errMsg==''}}">
+    <view class="ztmcTitle">
+      <view class="ztmcText">
+        <text selectable='true'>{{detail.xkXdrMc}}</text>
+      </view>
+    </view>
+
+    <view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+      <view hidden='{{showmenus}}' class=".sub_menu">
+        <view class='menu_main' catchtap='collection'>
+          <image wx:if="{{!isCollected}}" src='../../images/notcollected.png' class="menu_img"></image>
+          <image wx:if="{{isCollected}}" src='../../images/collected.png' class="menu_img"></image>
+        </view>
+        <view class='menu_main' catchtap='toSearchResult'>
+          <image src='../../images/detail1.png' class="menu_img"></image>
+        </view>
+      </view>
+
+      <view catchtap='showMenu' class='menu_main1'>
+        <image src="../../images/menu.png" class='menu_img1' style="margin-top:15px"></image>
+      </view>
+    </view>
+
+
+  </block>
+
+  <block wx:if="{{errMsg==''}}">
+    <view class="content">
+      <view class="table">
+        <view class="tr">
+          <view class="td td1">行政相对人名称:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrMc}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">统一社会信用代码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrShxym}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">组织机构代码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrZzjg}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">工商登记码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrGszc}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">税务登记号:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrSwdj}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">事业单位证书号:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrSydw}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">社会组织登记证号:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrShzz}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">法定代表人:</view>
+          <text selectable='true' class="td td2">{{detail.xkFrdb}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">法定代表人身份证号:</view>
+          <text selectable='true' class="td td2">{{detail.xkFrSfzh}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">证件类型:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrZjlx}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">证件号码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrZjhm}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">行政许可决定文书名称:</view>
+          <text selectable='true' class="td td2">{{detail.xkXkws}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">行政许可决定文书号:</view>
+          <text selectable='true' class="td td2">{{detail.xkWsh}}</text>
+        </view>
+
+        <view class="tr">
+          <view class="td td1">许可类别:</view>
+          <text selectable='true' class="td td2">{{detail.xkXklb}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可证书名称:</view>
+          <text selectable='true' class="td td2">{{detail.xkXkzs}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可编号:</view>
+          <text selectable='true' class="td td2">{{detail.xkXkbh}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可内容:</view>
+          <text selectable='true' class="td td2">{{detail.xkNr}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可决定日期:</view>
+          <text selectable='true' class="td td2">{{detail.xkJdrqString}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">有效期自:</view>
+          <text selectable='true' class="td td2">{{detail.xkYxqzString}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">有效期至:</view>
+          <text selectable='true' class="td td2">{{filter.transJZRQ(detail.xkYxqzi)}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可机关:</view>
+          <text selectable='true' class="td td2">{{detail.xkXkjg}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">数据来源单位:</view>
+          <text selectable='true' class="td td2">{{detail.xkLydw}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">备注:</view>
+          <text selectable='true' class="td td2">{{detail.bz}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="errArea">
+      <text>{{errMsg}}</text>
+    </view>
+  </block>
+</template>
+
+<!-- 旧版行政许可 -->
+<template name="oldXzxk">
+  <block wx:if="{{errMsg==''}}">
+    <view class="ztmcTitle">
+      <view class="ztmcText">
+        <text selectable='true'>{{detail.xkXdr}}</text>
+      </view>
+    </view>
+
+    <view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+      <view hidden='{{showmenus}}' class=".sub_menu">
+        <view class='menu_main' catchtap='collection'>
+          <image wx:if="{{!isCollected}}" src='../../images/notcollected.png' class="menu_img"></image>
+          <image wx:if="{{isCollected}}" src='../../images/collected.png' class="menu_img"></image>
+        </view>
+        <view class='menu_main' catchtap='toSearchResult'>
+          <image src='../../images/detail1.png' class="menu_img"></image>
+        </view>
+      </view>
+
+      <view catchtap='showMenu' class='menu_main1'>
+        <image src="../../images/menu.png" class='menu_img1' style="margin-top:15px"></image>
+      </view>
+    </view>
+
+
+  </block>
+
+  <block wx:if="{{errMsg==''}}">
+    <view class="content">
+      <view class="table">
+        <view class="tr">
+          <view class="td td1">行政许可决定文书号:</view>
+          <text selectable='true' class="td td2">{{detail.xkWsh}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">项目名称:</view>
+          <text selectable='true' class="td td2">{{detail.xkXmmc}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">审批类别:</view>
+          <text selectable='true' class="td td2">{{detail.xkSplb}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可内容:</view>
+          <text selectable='true' class="td td2">{{detail.xkNr}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">行政相对人名称:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdr}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">统一社会信用代码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrShxym}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">组织机构代码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrZdm}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">工商登记号码:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrGsdj}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">税务登记号:</view>
+          <text selectable='true' class="td td2">{{detail.xkXdrSwdj}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">居民身份证号:</view>
+          <text selectable='true' class="td td2">{{filter.hideSFZ(detail.xkXdrSfz)}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">法人代表姓名:</view>
+          <text selectable='true' class="td td2">{{detail.xkFr}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可决定日期:</view>
+          <text selectable='true' class="td td2">{{filter.dateToStr(detail.xkJdrq)}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可截止日期:</view>
+          <text selectable='true' class="td td2">{{filter.transJZRQ(detail.xkJzq)}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">许可机关:</view>
+          <text selectable='true' class="td td2">{{detail.xkXzjg}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">地方编码:</view>
+          <text selectable='true' class="td td2">{{detail.xkDfbm}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">当前状态:</view>
+          <text selectable='true' class="td td2">{{detail.xkZt==0?"正常":detail.xkZt==1?"撤销":detail.xkZt==2?"异议":""}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">数据更新时间:</view>
+          <text selectable='true' class="td td2">{{filter.dateToStr(detail.sjc)}}</text>
+        </view>
+        <view class="tr">
+          <view class="td td1">备注:</view>
+          <text selectable='true' class="td td2">{{detail.bz}}</text>
+        </view>
+
+
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="errArea">
+      <text>{{errMsg}}</text>
+    </view>
+  </block>
+
+</template>

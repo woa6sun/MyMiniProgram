@@ -1,0 +1,18 @@
+<toastedit id="toastedit"></toastedit>   
+
+<scroll-view class="infolist" scroll-y="true" lower-threshold>
+  <block wx:for="{{list}}" wx:for-item="data">
+    <view class="listContent" catchtap='toDetail' data-id="{{data.f002}}">
+      <view class="ztmc">{{data.f001}}</view>
+      <view class="tyshxydm">统一社会信用代码：{{data.f002}}</view>
+    </view>
+  </block>
+  <view style="height:50px;width:100%"></view>  
+</scroll-view>
+<view class="download" >
+  <view class='downloadcontent'>
+    <text>共匹配到{{totalCount}}条结果<block wx:if="{{totalCount>20}}">，以上展示前20条结果</block></text>
+  </view>
+</view>
+
+

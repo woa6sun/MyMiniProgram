@@ -1,0 +1,106 @@
+<toastedit id="toastedit"></toastedit>  
+
+<block wx:if="{{errMsg==''}}">
+  <view class="ztmcTitle">
+    <view class="ztmcText"> 
+      <text selectable='true'>{{detail.iName}}</text>
+    </view>
+  </view>
+
+  <view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+    <view hidden='{{showmenus}}' class="sub_menu" style="top:{{isTab?'-110px':'-60px'}};">
+      <view class='menu_main' catchtap='collection'>
+         <image wx:if="{{!isCollected}}" src='../../images/notcollected.png' class="menu_img"></image>
+        <image wx:if="{{isCollected}}" src='../../images/collected.png' class="menu_img"></image>
+      </view>
+
+      <block wx:if="{{isTab}}">
+        <view class='menu_main' catchtap='toSearchResult'>
+          <image src='../../images/detail1.png' class="menu_img"></image>
+        </view>
+      </block>
+    </view>
+
+    <view catchtap='showMenu' class='menu_main1'>
+       <image src="../../images/menu.png"  class='menu_img1' style="margin-top:15px"></image>
+    </view>
+  </view>
+</block>
+
+
+<block wx:if="{{errMsg==''}}">
+<view class="content">
+  <view class="table">
+
+    <view class="tr">
+      <view class="td td1">案号:</view>
+      <text selectable='true' class="td td2">{{detail.caseCode}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">失信被执行人姓名／名称:</view>
+      <text selectable='true' class="td td2">{{detail.iName}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">性别:</view>
+      <text selectable='true' class="td td2">{{detail.sexName}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">年龄:</view>
+      <text selectable='true' class="td td2">{{detail.age}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">身份证号码／组织机构代码:</view>
+      <text selectable='true' class="td td2">{{detail.cardNumNoShow}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">企业法人姓名:</view>
+      <text selectable='true' class="td td2">{{detail.buesinessEntity}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">执行法院:</view>
+      <text selectable='true' class="td td2">{{detail.courtName}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">执行依据文号:</view>
+      <text selectable='true' class="td td2">{{detail.gistCid}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">作出执行依据单位:</view>
+      <text selectable='true' class="td td2">{{detail.gistUnit}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">法律生效文书确定的义务:</view>
+      <text selectable='true' class="td td2">{{detail.duty}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">被执行人的履行情况:</view>
+      <text selectable='true' class="td td2">{{detail.performance}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">失信被执行人具体情形:</view>
+      <text selectable='true' class="td td2">{{detail.disreputTypeName}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">发布时间:</view>
+      <text selectable='true' class="td td2">{{detail.publishDateString}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">立案时间:</view>
+      <text selectable='true' class="td td2">{{detail.regDateString}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">已履行部分:</view>
+      <text selectable='true' class="td td2">{{detail.performedPart}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">未履行部分:</view>
+      <text selectable='true' class="td td2">{{detail.unformedPart}}</text>
+    </view>
+  </view>
+</view>
+</block>
+<block wx:else>
+  <view class="errArea">
+    <text>{{errMsg}}</text>
+  </view>
+</block>

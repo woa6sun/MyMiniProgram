@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "失信被执行人",
+  "usingComponents": {
+    "toastedit": "../../toast/toast"
+  }
+}

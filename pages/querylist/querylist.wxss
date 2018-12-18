@@ -1,0 +1,36 @@
+.infolist{
+  width:95%;
+  padding-left: 10px;
+}
+
+.listContent{
+  padding: 20rpx;
+  border-bottom: 1px solid #CFCFCF;
+}
+.ztmc{
+  font-size: 17px;
+  font-weight: bold;
+}
+.tyshxydm{
+  font-size: 28rpx;
+  color: #666666;
+  margin-top: 15rpx;
+}
+
+.download{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: #FF6A6A;
+  width: 100%;
+  height: 50px;
+  align-items:center;
+}
+
+.downloadcontent{
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  margin: auto auto;
+  color:#fff;
+}

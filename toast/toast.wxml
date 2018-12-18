@@ -1,0 +1,7 @@
+<!--toast/toast.wxml-->
+<view class='wx_toast_container' hidden="{{!toastShow}}">
+  <view class='wx_toast_text'>
+    <image wx:if="{{icon!=''}}"  src="{{icon}}" style="width:40px;height:40px"/>
+    <view>{{toastText}}</view> 
+  </view>
+</view>

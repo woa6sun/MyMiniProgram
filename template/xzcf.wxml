@@ -1,0 +1,268 @@
+<wxs module="filter" src="../filter/filter.wxs"></wxs>
+<!-- 新版行政处罚 -->
+<template name="newXzcf">
+  <block wx:if="{{errMsg==''}}">
+  <view class="ztmcTitle">
+    <view class="ztmcText">
+      <text selectable='true'>{{detail.cfXdrMc}}</text> 
+    </view>
+  </view>
+
+ <view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+    <view hidden='{{showmenus}}' class="sub_menu">
+      <view class='menu_main' catchtap='collection'>
+         <image wx:if="{{!isCollected}}" src='../../images/notcollected.png' class="menu_img"></image>
+        <image wx:if="{{isCollected}}" src='../../images/collected.png' class="menu_img"></image>
+      </view>
+      <view class='menu_main' catchtap='toSearchResult'>
+        <image src='../../images/detail1.png' class="menu_img"></image>
+      </view>
+    </view>
+
+    <view catchtap='showMenu' class='menu_main1'>
+       <image src="../../images/menu.png"  class='menu_img1' style="margin-top:15px"></image>
+    </view>
+</view>
+
+</block>
+
+<block wx:if="{{errMsg==''}}">
+<view class="content">
+  <view class="table">
+    <view class="tr">
+      <view class="td td1">行政相对人名称:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrMc}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">统一社会信用代码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrShxym}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">组织机构代码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrZzjg}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">工商登记码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrGszc}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">税务登记号:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrSwdj}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">事业单位证书号:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrSydw}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">社会组织登记证号:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrShzz}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">法定代表人:</view>
+      <text selectable='true' class="td td2">{{detail.cfFrdb}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">法定代表人身份证号:</view>
+      <text selectable='true' class="td td2">{{detail.cfFrSfzh}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">证件类型:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrZjlx}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">证件号码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrZjhm}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">行政处罚决定文书号:</view>
+      <text selectable='true' class="td td2">{{detail.cfWsh}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">违法行为类型:</view>
+      <text selectable='true' class="td td2">{{detail.cfWfxw}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">违法事实:</view>
+      <text selectable='true' class="td td2">{{detail.cfSy}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚依据:</view>
+      <text selectable='true' class="td td2">{{detail.cfYj}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚类别:</view>
+      <text selectable='true' class="td td2">{{detail.cfCflb}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚内容:</view>
+      <text selectable='true' class="td td2">{{detail.cfNr}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">罚款金额(万元):</view>
+      <text selectable='true' class="td td2">{{detail.cfNrFk}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">没收违法所得、没收非法财物的金额(万元):</view>
+      <text selectable='true' class="td td2">{{detail.cfNrWfff}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">暂扣或吊销证照名称及编号:</view>
+      <text selectable='true' class="td td2">{{detail.cfNrZkdx}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚决定日期:</view>
+      <text selectable='true' class="td td2">{{detail.cfJdrqString}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚有效期:</view>
+      <text selectable='true' class="td td2">{{filter.transJZRQ(detail.cfYxq)}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">公示截止期:</view>
+      <text selectable='true' class="td td2">{{transJZRQ(detail.cfGsjzq)}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚机关:</view>
+      <text selectable='true' class="td td2">{{detail.cfCfjg}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">数据来源单位:</view>
+      <text selectable='true' class="td td2">{{detail.cfSjly}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">备注:</view>
+      <text selectable='true' class="td td2">{{detail.bz}}</text>
+    </view>
+
+  </view>
+</view>
+</block>
+<block wx:else>
+  <view class="errArea">
+    <text>{{errMsg}}</text>
+  </view>
+</block>
+
+</template>
+
+<!-- 旧版行政处罚 -->
+<template name="oldXzcf">
+  <block wx:if="{{errMsg==''}}">
+  <view class="ztmcTitle">
+    <view class="ztmcText">
+      <text selectable='true'>{{detail.cfXdrMc}}</text> 
+    </view>
+  </view>
+
+ <view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+    <view hidden='{{showmenus}}' class="sub_menu">
+      <view class='menu_main' catchtap='collection'>
+         <image wx:if="{{!isCollected}}" src='../../images/notcollected.png' class="menu_img"></image>
+        <image wx:if="{{isCollected}}" src='../../images/collected.png' class="menu_img"></image>
+      </view>
+      <view class='menu_main' catchtap='toSearchResult'>
+        <image src='../../images/detail1.png' class="menu_img"></image>
+      </view>
+    </view>
+
+    <view catchtap='showMenu' class='menu_main1'>
+       <image src="../../images/menu.png"  class='menu_img1' style="margin-top:15px"></image>
+    </view>
+</view>
+
+</block>
+
+<block wx:if="{{errMsg==''}}">
+<view class="content">
+  <view class="table">
+    <view class="tr">
+      <view class="td td1">行政处罚决定文书号:</view>
+      <text selectable='true' class="td td2">{{detail.cfWsh}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">处罚名称:</view>
+      <text selectable='true' class="td td2">{{detail.cfCfmc}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">处罚类别1:</view>
+      <text selectable='true' class="td td2">{{detail.cfCflb1}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">处罚类别2:</view>
+      <text selectable='true' class="td td2">{{detail.cfCflb2}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">处罚事由:</view>
+      <text selectable='true' class="td td2">{{detail.cfSy}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">处罚依据:</view>
+      <text selectable='true' class="td td2">{{detail.cfYj}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">处罚结果:</view>
+      <text selectable='true' class="td td2">{{detail.cfJg}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">行政相对人名称:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrMc}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">统一社会信用代码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrShxym}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">组织机构代码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrZdm}}</text>
+    </view>
+     <view class="tr">
+      <view class="td td1">工商登记码:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrGsdj}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">税务登记号:</view>
+      <text selectable='true' class="td td2">{{detail.cfXdrSwdj}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">居民身份证号:</view>
+      <text selectable='true' class="td td2">{{filter.hideSFZ(detail.cfXdrSfz)}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">法人代表姓名:</view>
+      <text selectable='true' class="td td2">{{detail.cfFr}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚决定日期:</view>
+      <text selectable='true' class="td td2">{{filter.dateToStr(detail.cfJdrq)}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">处罚机关:</view>
+      <text selectable='true' class="td td2">{{detail.cfXzjg}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">地方编码:</view>
+      <text selectable='true' class="td td2">{{detail.cfDfbm}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">当前状态:</view>
+      <text selectable='true' class="td td2">{{detail.cfZt==0?"正常":detail.cfZt==1?"撤销":detail.cfZt==2?"异议":""}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">数据更新时间:</view>
+      <text selectable='true' class="td td2">{{filter.dateToStr(detail.sjc)}}</text>
+    </view>
+    <view class="tr">
+      <view class="td td1">备注:</view>
+      <text selectable='true' class="td td2">{{detail.bz}}</text>
+    </view>
+
+  </view>
+</view>
+</block>
+<block wx:else>
+  <view class="errArea">
+    <text>{{errMsg}}</text>
+  </view>
+</block>
+
+</template>

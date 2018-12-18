@@ -1,0 +1,3 @@
+@import "../../style/detail.wxss";
+@import "../../style/menu.wxss";
+

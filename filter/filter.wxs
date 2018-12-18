@@ -1,0 +1,118 @@
+
+//日期转换
+function dateToStr(value){
+  if(value == undefined || value == ""){
+    return "";
+  }
+
+  var a = '';
+
+  var date = getDate(value);
+  
+  a = date.getFullYear() + "-" + formatNumber(date.getMonth() + 1) + "-" + formatNumber(date.getDay())
+  
+  return a;
+ 
+}
+
+function formatNumber(n) {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+//截取字符长度
+function subStr(value,bgIndex,endIndex){
+  if(value == undefined || value == ""){
+    return "";
+  }
+
+  var a = value.substring(bgIndex,endIndex);
+  return a;
+} 
+
+//部分字符长度省略
+function subStr1(value,bgIndex,endIndex){
+  if (value == undefined || value == "") {
+    return "";
+  }
+
+  var a = value.substring(bgIndex, endIndex)+"...";
+  return a;
+}
+
+function transJZRQ(value){
+  if (value == undefined || value == "") {
+    return "";
+  }
+
+  var a = '';
+
+  var date = getDate(value);
+
+
+  if(date.getFullYear == '2099'|| date.getFullYear == '3099'){
+    a = '长期';
+    return a;
+  }else{
+    a = date.getFullYear() + "-" + formatNumber(date.getMonth() + 1) + "-" + formatNumber(date.getDay())
+
+    return a;
+
+  }
+
+}
+
+//身份证信息部分脱敏
+function hideSFZ(value){
+  if (value == undefined || value == "") {
+    return "";
+  }
+  var a = "";
+
+  switch(value.length){
+    case 8:
+      a = value.substring(0,2)+"****"+value.substring(6,7);
+    break;
+    case 9: 
+      a = value.substring(0,2) + "*****" + value.substring(7,8);
+    break;
+    case 15: 
+      a = value.substring(0,4) + "*******" + value.substring(11,14);
+    break;
+    case 18: 
+      a = value.substring(0,6) + "********" + value.substring(13,17);
+    break;
+
+  }
+
+  return a;
+}
+
+//判断图标链接
+function icon(value){
+  var a = "";
+  switch(value){
+    case 1:
+      a = "../../images/xzxk.png";
+      break;
+    case 2:
+      a = "../../images/xzcf.png";
+      break;
+    case 3:
+      a = "../../images/sxbzxr.png";
+      break;
+    case 4:
+      a = "../../images/detail.png";
+      break;      
+  }
+  return a;
+}
+
+module.exports={
+  dateToStr: dateToStr,
+  subStr:subStr,
+  subStr1:subStr1,
+  transJZRQ:transJZRQ,
+  hideSFZ:hideSFZ,
+  icon: icon
+}

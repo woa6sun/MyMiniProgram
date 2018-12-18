@@ -1,0 +1,155 @@
+<toastedit id="toastedit"></toastedit>   
+<wxs module="filter" src="../../filter/filter.wxs"></wxs>
+
+<view class="container">
+  
+  <view class="headpart">
+
+    <view class='menu_box' style='top:{{top}};left:{{left}}' catchtouchmove='setTouchMove'>
+    <!-- <view hidden='{{showmenus}}' style="position:absolute;top:-60px;">
+      <view class='menu_main' >
+        <text class="menu_title">我的收藏</text>
+        
+      </view>
+    </view> -->
+
+    <view catchtap='toMyCollection' class='menu_main1'>
+       <image style='width:60px;height:60px' src="../../images/mycollection.png"  class='menu_img1'></image>
+    </view>
+</view>
+
+    <view class="head">
+      <image class="headlogo" src='../../images/logo.png' />
+    </view>
+
+    <view class="search">
+      <input class="searchblank" type="text" placeholder='请输入主体名称或统一社会信用代码' bindinput='getValue'/>
+      <button class="searchbutton" bindtap="search">查询</button>
+    </view>
+
+  </view>
+
+
+  <view class="tabsCss">
+
+    <view class="tab" style="width:31%" bindtap='tab' id="0">
+      <view class="sort">
+        <image src='../../images/xzxk.png' style='width:17px;height:17px;'/>
+        <text class="{{curHdIndex == 0 ? 'select' : ''}}">行政许可</text>
+      </view>
+    </view>
+
+    <view class="tab" style="width:31%"  bindtap='tab' id="1">
+      <view class="sort">
+        <image src='../../images/xzcf.png' style='width:17px;height:17px;'/>
+        <text class="{{curHdIndex == 1 ? 'select' : ''}}">行政处罚</text>
+      </view>
+    </view>
+
+    <view class="tab" style="width:38%" bindtap='tab' id="2">
+      <view class="sort">
+        <image src='../../images/sxbzxr.png' style=''/>
+        <text class="{{curHdIndex == 2 ? 'select' : ''}}">失信被执行人</text>
+      </view>
+    </view>
+  </view>
+  <view class='tabContent'></view>
+
+
+  <swiper current='{{curHdIndex}}' style="height:500px" bindchange='change'>
+    <swiper-item >
+      <block wx:if="{{errMsg == ''}}">
+        <scroll-view scroll-y="true"  class='tabContent-item'>
+
+          <block wx:for="{{xzxkdatas}}" wx:for-item="data" wx:for-index="index" wx:key="xzxkdatas">
+            <view class="items" data-fid='{{data.id}}' data-type='1' catchtap='toDetail'>
+              <text selectable='true' class="font1">{{index+1}}. {{data.xkXmmc.length>15?filter.subStr1(data.xkXmmc,0,15):data.xkXmmc}}</text>
+              <block wx:if="{{index+1>=10}}">
+                <text selectable='true' style="margin-left:30px" class="font2">行政相对人：{{data.xkXdr.length>15?filter.subStr1(data.xkXdr,0,15):data.xkXdr}}</text>
+              </block>
+              <block wx:else>
+                <text selectable='true' class="font2">行政相对人：{{data.xkXdr.length>15?filter.subStr1(data.xkXdr,0,15):data.xkXdr}}</text>
+              </block>
+            </view>
+          </block>
+          <view class="bottom" wx:if="{{xzxkCount>=50}}">
+            <view style="color:#FF6A6A">{{message}}</view>
+          </view>
+        </scroll-view>
+      </block>
+      <block wx:else>
+        <view class="errArea">
+          <text>{{errMsg}}</text>
+        </view>
+      </block>
+    </swiper-item>
+
+
+    <swiper-item>
+    <block wx:if="{{errMsg == ''}}">
+      <scroll-view scroll-y="true" class='tabContent-item'>
+        <block wx:for="{{xzcfdatas}}" wx:for-item="data" wx:for-index="index" wx:key="xzcfdatas">
+          <view class="items" data-fid='{{data.id}}' data-type='2' catchtap='toDetail'>
+            <text selectable='true' class="font1">{{index+1}}. {{data.cfCfmc.length>15?filter.subStr1(data.cfCfmc,0,15):data.cfCfmc}}</text>
+            <block wx:if="{{index+1>=10}}">
+              <text selectable='true' style="margin-left:30px" class="font2">行政相对人：{{data.cfXdrMc.length>15?filter.subStr1(data.cfXdrMc,0,15):data.cfXdrMc}}</text>
+            </block>
+            <block wx:else>
+              <text selectable='true' class="font2">行政相对人：{{data.cfXdrMc.length>15?filter.subStr1(data.cfXdrMc,0,15):data.cfXdrMc}}</text>
+            </block>
+          </view>
+        </block>
+        <view class="bottom" wx:if="{{xzcfCount>=50}}">
+          <view style="color:#FF6A6A">{{message}}</view>
+        </view>
+      </scroll-view>
+      </block>
+      <block wx:else>
+        <view class="errArea">
+          <text>{{errMsg}}</text>
+        </view>
+      </block>
+    
+    </swiper-item>
+
+
+    <swiper-item>
+    <block wx:if="{{errMsg == ''}}">
+      <scroll-view scroll-y="true" class='tabContent-item'>
+        <block wx:for="{{sxbzxrdatas}}" wx:for-item="data" wx:for-index="index" wx:key="sxbzxrdatas">
+          <view class="items" data-fid='{{data.f000}}' data-type='3' catchtap='toDetail'>
+            <text selectable='true' class="font1">{{index+1}}. {{data.iName.length>15?filter.subStr1(data.iName,0,15):data.iName}}</text>
+            <block wx:if="{{index+1>=10}}">
+              <text selectable='true' style="margin-left:30px" class="font2">发布日期：{{data.publishDateString}}</text>
+            </block>
+            <block wx:else>
+              <text class="font2">发布日期：{{data.publishDateString}}</text>
+            </block>
+          </view>
+        </block>
+        <view class="bottom" wx:if="{{sxbzxrCount>=50}}">
+          <view style="color:#FF6A6A">{{message}}</view>
+        </view>
+       </scroll-view>
+       </block>
+        <block wx:else>
+        <view class="errArea">
+          <text>{{errMsg}}</text>
+        </view>
+      </block>
+      
+    </swiper-item>
+  
+  </swiper>
+   
+
+   
+
+    
+
+   
+
+  
+
+
+</view>

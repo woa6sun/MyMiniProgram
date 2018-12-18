@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "查询详情信息",
+    "usingComponents": {
+      "toastedit": "../../toast/toast"
+    }
+}

@@ -1,0 +1,27 @@
+.content{
+  font-size: 30rpx;
+  text-align: center;
+  color: #a8a8a8;
+  margin-top: 50%;
+}
+.back{
+  width:125px;
+  height:30px;
+  font-size: 13px;
+  border:1px solid #FF6A6A;
+  display: flex;
+  margin:30px auto;
+  justify-content: center;
+  align-items: center;
+}
+.showResultCount{
+  width: 100%;
+  background-color:#FF6A6A;
+  color: white;
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+}
